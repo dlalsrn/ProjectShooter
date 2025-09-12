@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Camera/PlayerCameraManager.h"
-#include "ProjectShooterCameraManager.generated.h"
+#include "Blueprint/UserWidget.h"
+#include "ProjectShooterGamePlayWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class AProjectShooterCameraManager : public APlayerCameraManager
+class UProjectShooterGamePlayWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
