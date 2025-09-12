@@ -6,33 +6,52 @@
 // Sets default values
 AProjectShooterCharacter::AProjectShooterCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	ShadowBodyCpp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ShadowBodyCpp"));
-	ShadowBodyCpp->SetupAttachment(RootComponent);
+	if (ShadowBodyCpp)
+	{
+		ShadowBodyCpp->SetupAttachment(RootComponent);
 
-	WeaponInBackCpp = CreateDefaultSubobject<UChildActorComponent>(TEXT("WeaponInBackCpp"));
-	WeaponInBackCpp->SetupAttachment(ShadowBodyCpp);
+		WeaponInBackCpp = CreateDefaultSubobject<UChildActorComponent>(TEXT("WeaponInBackCpp"));
+		if (WeaponInBackCpp)
+		{
+			WeaponInBackCpp->SetupAttachment(ShadowBodyCpp);
+		}
+	}
+
 
 	LowerBodyCpp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("LowerBodyCpp"));
-	LowerBodyCpp->SetupAttachment(RootComponent);
+	if (LowerBodyCpp)
+	{
+		LowerBodyCpp->SetupAttachment(RootComponent);
+	}
 
 	CameraCpp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraCpp"));
-	CameraCpp->SetupAttachment(RootComponent);
+	if (CameraCpp)
+	{
+		CameraCpp->SetupAttachment(RootComponent);
 
-	FirstPersonCpp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonCpp"));
-	FirstPersonCpp->SetupAttachment(CameraCpp);
+		FirstPersonCpp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonCpp"));
+		if (FirstPersonCpp)
+		{
+			FirstPersonCpp->SetupAttachment(CameraCpp);
 
-	WeaponInHandCpp = CreateDefaultSubobject<UChildActorComponent>(TEXT("WeaponInHandCpp"));
-	WeaponInHandCpp->SetupAttachment(FirstPersonCpp);
+			WeaponInHandCpp = CreateDefaultSubobject<UChildActorComponent>(TEXT("WeaponInHandCpp"));
+			if (WeaponInHandCpp)
+			{
+				WeaponInHandCpp->SetupAttachment(FirstPersonCpp);
+			}
+		}
+	}
 }
 
 // Called when the game starts or when spawned
 void AProjectShooterCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
