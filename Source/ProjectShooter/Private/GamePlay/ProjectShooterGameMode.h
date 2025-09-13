@@ -34,6 +34,15 @@ public:
 
 	FDateTime GetStartTimeCpp() const;
 
+	UFUNCTION(BlueprintCallable)
+	int32 GetRankingCpp() const;
+
+	UFUNCTION(BlueprintCallable)
+	TArray<float> GetRankingScoresCpp() const;
+
+	UFUNCTION(BlueprintCallable)
+	TArray<FString> GetRankingTimesCpp() const;
+
 public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FProjectShooterGameModeEndGame OnEndGameCpp;

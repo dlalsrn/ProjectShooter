@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include <Components/TextBlock.h>
+#include <Components/GridPanel.h>
 #include "ProjectShooterResultWidget.generated.h"
 
 /**
@@ -14,4 +16,19 @@ class UProjectShooterResultWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+protected:
+	virtual void NativeConstruct() override;
+
+	UFUNCTION(BlueprintCallable)
+	void InitRankingCpp();
+
+protected:
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	TObjectPtr<UTextBlock> YourScoreText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	TObjectPtr<UTextBlock> YourRankingText;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	TObjectPtr<UGridPanel> Rankingtable;
 };

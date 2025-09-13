@@ -39,3 +39,18 @@ FDateTime AProjectShooterGameMode::GetStartTimeCpp() const
 {
 	return StartTimeCpp;
 }
+
+int32 AProjectShooterGameMode::GetRankingCpp() const
+{
+	return RankingCpp;
+}
+
+TArray<float> AProjectShooterGameMode::GetRankingScoresCpp() const
+{
+	return RankingScoresCpp;
+}
+
+TArray<FString> AProjectShooterGameMode::GetRankingTimesCpp() const
+{
+	return RankingTimesCpp;
+}
