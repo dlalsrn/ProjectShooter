@@ -11,6 +11,23 @@ AProjectShooterLaserPointer::AProjectShooterLaserPointer()
 
 }
 
+float AProjectShooterLaserPointer::GetEndPointOfLaserCpp(FVector Start, FVector End) const
+{
+	float Distance;
+
+	FHitResult HitResult;
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECollisionChannel::ECC_Visibility))
+	{
+		Distance = HitResult.Distance;
+	}
+	else
+	{
+		Distance = (End - Start).Length();
+	}
+
+	return Distance;
+}
+
 // Called when the game starts or when spawned
 void AProjectShooterLaserPointer::BeginPlay()
 {
