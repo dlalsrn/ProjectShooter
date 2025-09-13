@@ -15,6 +15,9 @@ public:
 	// Sets default values for this actor's properties
 	AProjectShooterBullet();
 
+	UFUNCTION(BlueprintCallable)
+	void SetSpeedCpp(float Value);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -25,6 +28,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	float SpeedCpp;
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))

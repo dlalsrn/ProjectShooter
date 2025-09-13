@@ -15,6 +15,21 @@ public:
 	// Sets default values for this actor's properties
 	AProjectShooterWeapon();
 
+	UFUNCTION(BlueprintCallable)
+	void FireCpp(UClass* BulletClass, FTransform Transform);
+
+	UFUNCTION(BlueprintCallable)
+	void RegisterNextFireCpp(float Duration);
+
+	UFUNCTION(BlueprintCallable)
+	void FireReleasedCpp();
+
+	UFUNCTION(BlueprintCallable)
+	bool IsFiringCpp() const;
+
+	UFUNCTION(BlueprintCallable)
+	void MakeRecoilCpp();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -23,4 +38,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float BulletSpeedCpp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	FTimerHandle TimerFireCpp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsFirePressedCpp;
 };

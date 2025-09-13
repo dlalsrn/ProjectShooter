@@ -16,6 +16,11 @@ AProjectShooterBullet::AProjectShooterBullet()
 	}
 }
 
+void AProjectShooterBullet::SetSpeedCpp(float Value)
+{
+	SpeedCpp = Value;
+}
+
 // Called when the game starts or when spawned
 void AProjectShooterBullet::BeginPlay()
 {
