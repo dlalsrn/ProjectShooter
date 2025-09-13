@@ -14,4 +14,10 @@ class UProjectShooterSaveGame : public USaveGame
 {
 	GENERATED_BODY()
 	
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<float> ScoresCpp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FString> TimesCpp;
 };
