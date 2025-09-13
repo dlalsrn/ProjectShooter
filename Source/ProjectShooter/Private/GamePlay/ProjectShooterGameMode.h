@@ -8,9 +8,18 @@
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FProjectShooterGameModeEndGame, AProjectShooterGameMode, OnEndGameCpp);
 
+UENUM(BlueprintType)
+enum class StateOfGameCpp : uint8
+{
+	Ready,
+	Running,
+	End,
+};
+
 /**
  * 
  */
+
 UCLASS()
 class AProjectShooterGameMode : public AGameModeBase
 {
@@ -20,26 +29,34 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateRankingCpp();
 
+	UFUNCTION(BlueprintCallable)
+	StateOfGameCpp GetStateCpp() const;
+
+	FDateTime GetStartTimeCpp() const;
+
 public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FProjectShooterGameModeEndGame OnEndGameCpp;
 
 protected:
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
 	FDateTime StartTimeCpp;
 
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
 	FDateTime EndTimeCpp;
 
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
 	TArray<float> RankingScoresCpp;
 
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
 	TArray<FString> RankingTimesCpp;
 
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
 	int32 RankingCpp;
 
-	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
 	float ScoreCpp;
+
+	UPROPERTY(Category = GameMode, VisibleAnywhere, BlueprintReadWrite)
+	StateOfGameCpp StateCpp;
 };

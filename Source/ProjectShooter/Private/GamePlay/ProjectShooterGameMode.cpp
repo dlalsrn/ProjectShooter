@@ -29,3 +29,13 @@ void AProjectShooterGameMode::UpdateRankingCpp()
 		RankingTimesCpp.RemoveAt(RankingTimesCpp.Num() - 1);
 	}
 }
+
+StateOfGameCpp AProjectShooterGameMode::GetStateCpp() const
+{
+	return StateCpp;
+}
+
+FDateTime AProjectShooterGameMode::GetStartTimeCpp() const
+{
+	return StartTimeCpp;
+}
