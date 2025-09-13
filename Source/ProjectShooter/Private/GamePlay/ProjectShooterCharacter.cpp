@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include <GameFramework/CharacterMovementComponent.h>
+#include <Kismet/GameplayStatics.h>
+#include <EnhancedInputComponent.h>
 #include "GamePlay/ProjectShooterCharacter.h"
 
 // Sets default values
@@ -54,6 +56,22 @@ void AProjectShooterCharacter::BeginPlay()
 
 }
 
+void AProjectShooterCharacter::OnTriggerRun(const FInputActionValue& Value)
+{
+	IsRunPressedCpp = Value.Get<bool>();
+}
+
+void AProjectShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	// Set up action bindings
+	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInputComponent->BindAction(RunInputActionCpp, ETriggerEvent::Triggered, this, &AProjectShooterCharacter::OnTriggerRun);
+	}
+}
+
 // Called every frame
 void AProjectShooterCharacter::Tick(float DeltaTime)
 {
@@ -61,10 +79,46 @@ void AProjectShooterCharacter::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void AProjectShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+float AProjectShooterCharacter::GetSpeedCpp() const
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	return GetVelocity().Length();
 }
 
+bool AProjectShooterCharacter::CanRunCpp() const
+{
+	return (MoveForwardValueCpp > 0.0) && IsRunPressedCpp;
+}
+
+void AProjectShooterCharacter::TickRunCpp()
+{
+	if (CanRunCpp())
+	{
+		switch (StateCpp)
+		{
+		case StateOfCharacterCpp::Idle:
+			StateCpp = StateOfCharacterCpp::Running;
+			GetCharacterMovement()->MaxWalkSpeed *= 2.0f;
+			break;
+		}
+	}
+	else
+	{
+		switch (StateCpp)
+		{
+		case StateOfCharacterCpp::Running:
+			StateCpp = StateOfCharacterCpp::Idle;
+			GetCharacterMovement()->MaxWalkSpeed *= 0.5f;
+			break;
+		}
+	}
+}
+
+void AProjectShooterCharacter::OnFootStepLeftCpp()
+{
+	UGameplayStatics::PlaySoundAtLocation(this, FootStepLeftSoundCpp, LowerBodyCpp->GetSocketLocation("foot_l"));
+}
+
+void AProjectShooterCharacter::OnFootStepRightCpp()
+{
+	UGameplayStatics::PlaySoundAtLocation(this, FootStepRightSoundCpp, LowerBodyCpp->GetSocketLocation("foot_r"));
+}

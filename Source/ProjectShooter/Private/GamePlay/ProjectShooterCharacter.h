@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include <Camera/CameraComponent.h>
+#include <InputAction.h>
 #include "ProjectShooterCharacter.generated.h"
 
 UENUM(BlueprintType)
@@ -30,12 +31,29 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	virtual void OnTriggerRun(const FInputActionValue& Value);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	virtual float GetSpeedCpp() const;
+
+	UFUNCTION(BlueprintCallable)
+	virtual bool CanRunCpp() const;
+
+	UFUNCTION(BlueprintCallable)
+	virtual void TickRunCpp();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void OnFootStepLeftCpp();
+
+	UFUNCTION(BlueprintCallable)
+	virtual void OnFootStepRightCpp();
 
 protected:
 	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
@@ -46,6 +64,9 @@ protected:
 
 	UPROPERTY(Category = Character, EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<USoundBase> FootStepRightSoundCpp;
+
+	UPROPERTY(Category = Character, EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UInputAction> RunInputActionCpp;
 
 	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadWrite)
 	bool IsRunPressedCpp;
