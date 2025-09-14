@@ -75,3 +75,8 @@ DerivedDataCache/*
 
 # Temp Files
 Config/DefaultEditorPerProjectUserSettings.ini
+
+# My Content
+Content/*
+!Content/ProjectContent/
+!Content/ProjectContent/**
