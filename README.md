@@ -111,7 +111,7 @@ https://velog.io/@lmg0052/series/Unreal-Engine-5-FPS-%EA%B2%8C%EC%9E%84
 <img width="1458" height="896" alt="image" src="https://github.com/user-attachments/assets/b27bef7b-2f76-46ac-8dec-7439d69e804d" />
 <br><br/>
 
-# 문제 발생 및 해결과정
+# 트러블 슈팅
 - **Character와 Camera를 별개의 Component로 두었을 때, 카메라가 회전 시 화면 우측 하단에 Weapon이 위치하지 않고 화면에서 벗어나는 현상이 발생.**
 
 → Camera → Character → Weapon 구조로 설정하여 Camera가 회전 시 따라가는 방식으로 우측 하단에 Weapon을 고정시킴.
@@ -135,71 +135,6 @@ https://velog.io/@lmg0052/series/Unreal-Engine-5-FPS-%EA%B2%8C%EC%9E%84
 → Character의 Reload, Swap, Run 등 다양한 움직임에 대해 그림자가 제대로 표현됨.
 <br><br/>
 
-# 코드 & 블루프린트 하이라이트
-- **LaserPointer LineTrace**
-    ```cpp
-    float AProjectShooterLaserPointer::GetEndPointOfLaserCpp(FVector Start, FVector End) const
-    {
-    	float Distance;
-    	FHitResult HitResult;
-    	if (GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECollisionChannel::ECC_Visibility))
-    	{
-    		Distance = HitResult.Distance;
-    	}
-    	else
-    	{
-    		Distance = (End - Start).Length();
-    	}
-    	
-    	return Distance;
-    }
-    ```
-    
-- **Ranking 집계**
-    ```cpp
-    void UProjectShooterResultWidget::InitRankingCpp()
-    {
-    	AProjectShooterGameMode* GameMode = Cast<AProjectShooterGameMode>(UGameplayStatics::GetGameMode(this));
-    	if (GameMode)
-    	{
-    		int32 Ranking = GameMode->GetRankingCpp();
-    		TArray<float> Scores = GameMode->GetRankingScoresCpp();
-    		TArray<FString> Times = GameMode->GetRankingTimesCpp();
-    
-    		FString Text = TEXT("Your Ranking = #") + FString::FromInt(Ranking);
-    		YourRankingText->SetText(FText::FromString(Text));
-    
-    		for (int32 Index = 0; Index < Scores.Num(); Index++)
-    		{
-    			int32 Row = Index + 1;
-    
-    			UTextBlock* Rank = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass());
-    			if (Rank)
-    			{
-    				Rank->SetText(FText::AsNumber(Row));
-    				UGridSlot* ChildSlot = Rankingtable->AddChildToGrid(Rank, Row, 0);
-    				ChildSlot->SetNudge(FVector2D(150.0f, Row * 20.0f));
-    			}
-    
-    			UTextBlock* Score = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass());
-    			if (Score)
-    			{
-    				Score->SetText(FText::AsNumber(Scores[Index]));
-    				UGridSlot* ChildSlot = Rankingtable->AddChildToGrid(Score, Row, 1);
-    				ChildSlot->SetNudge(FVector2D(350.0f, Row * 20.0f));
-    			}
-    
-    			UTextBlock* Time = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass());
-    			if (Time)
-    			{
-    				Time->SetText(FText::FromString(Times[Index]));
-    				UGridSlot* ChildSlot = Rankingtable->AddChildToGrid(Time, Row, 2);
-    				ChildSlot->SetNudge(FVector2D(550.0f, Row * 20.0f));
-    			}
-    		}
-    	}
-    }
-    ```
     
 - **Shadow Body Animation Blueprint**
 <img width="1414" height="502" alt="image" src="https://github.com/user-attachments/assets/18973fd9-d3a0-432c-939d-e1e1081166ec" />
