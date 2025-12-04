@@ -29,7 +29,7 @@ Blueprint로 먼저 제작하고, 점차 C++로 전환하며 UE5의 핵심 기�
 - **Engine / Client:** Unreal Engine 5, Window(PC)
 - **Animation:** Animation Blueprint, Anim Montage, Root Motion, Anim Notify
 - **UI:** UMG, Widget Blueprint
-- **Audio:** Sound Cue, Sound Attenuation
+- **Audio:** Sound Cue
 - **Version Control System:** Git, GitHub
 <br></br>
 
