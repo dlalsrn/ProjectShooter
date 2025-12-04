@@ -17,11 +17,21 @@ Unreal Engine 5 환경에서 1인칭 시점 FPS 슈팅 게임을 설계 및 구�
 Blueprint로 먼저 제작하고, 점차 C++로 전환하며 UE5의 핵심 기능(Enhanced Input, SaveGame, Anim Montage, Animation Blueprint, Widget 등)을 직접 적용하여 개발 역량을 강화.
 <br><br/>
 
-## 플랫폼 및 기술 스택
+## 플랫폼
 - **게임 엔진**: Unreal Engine 5.5
 - **프로그래밍 언어**: Blueprint / C++
 - **플랫폼**: PC
 <br><br/>
+
+## 기술 스택
+- **Programming Language:** C++, Blueprint
+- **IDE:** Visual Studio 2022
+- **Engine / Client:** Unreal Engine 5, Window(PC)
+- **Animation:** Animation Blueprint, Anim Montage, Root Motion, Anim Notify
+- **UI:** UMG, Widget Blueprint
+- **Audio:** Sound Cue, Sound Attenuation
+- **Version Control System:** Git, GitHub
+<br></br>
 
 ## 핵심 기능
 - **플레이어 입력(Enhanced Input)**
