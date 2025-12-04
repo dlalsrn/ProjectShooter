@@ -6,6 +6,7 @@
 - **프로젝트 이름**: ProjectShooter
 - **프로젝트 기간**: 2025.08.04 ~ 진행 중 (최신 업데이트: 2025.09.14)
 - **팀 구성**: 개인 프로젝트
+- **링크: [[시연 영상]](https://www.youtube.com/watch?v=L_QDgLc6cH8) [[개발 과정]](https://velog.io/@lmg0052/series/Unreal-Engine-5-FPS-%EA%B2%8C%EC%9E%84)**
 <br><br/>
 
 ## 프로젝트 목표
